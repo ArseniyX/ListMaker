@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         listRecyclerView = findViewById(R.id.lists_recyclerview)
         listRecyclerView.layoutManager = LinearLayoutManager(this)
-//        listRecyclerView.adapter = ListSelectionRecyclerViewAdapter()
+        listRecyclerView.adapter = ListSelectionRecyclerViewAdapter()
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
