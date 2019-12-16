@@ -24,7 +24,8 @@ class ListSelectionRecyclerViewAdapter : RecyclerView.Adapter<ListSelectionViewH
     }
 
     override fun onBindViewHolder(holder: ListSelectionViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        holder.listPosition.text = (position + 1).toString()
+        holder.listTitle.text = listTitles[position]
     }
 
 }
