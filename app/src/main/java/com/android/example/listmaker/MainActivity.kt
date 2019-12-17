@@ -20,15 +20,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var listRecyclerView: RecyclerView
+    private val listDataManager = ListDataManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        val lists = listDataManager.readList()
         listRecyclerView = findViewById(R.id.lists_recyclerview)
         listRecyclerView.layoutManager = LinearLayoutManager(this)
-        listRecyclerView.adapter = ListSelectionRecyclerViewAdapter()
+
+        listRecyclerView.adapter = ListSelectionRecyclerViewAdapter(lists)
 
         fab.setOnClickListener {
             Log.i(mainActivity, "float button was pressed")
@@ -66,6 +69,14 @@ class MainActivity : AppCompatActivity() {
 
         builder.setPositiveButton(positiveButtonTitle) { dialog, _ ->
             Log.i(mainActivity, "Positive Button was pressed")
+
+            val list = TaskList(listTitleEditText.text.toString())
+            listDataManager.saveList(list)
+
+            val recyclerAdapter = listRecyclerView.adapter as
+                    ListSelectionRecyclerViewAdapter
+            recyclerAdapter.addList(list)
+
             dialog.dismiss()
         }
         // show the dialog from calling this function
