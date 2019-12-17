@@ -2,7 +2,7 @@ package com.android.example.listmaker
 
 import android.os.Bundle
 import android.text.InputType
-import com.google.android.material.snackbar.Snackbar
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -14,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        val mainActivity = MainActivity::class.java.simpleName
+    }
 
     lateinit var listRecyclerView: RecyclerView
 
@@ -27,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         listRecyclerView.adapter = ListSelectionRecyclerViewAdapter()
 
         fab.setOnClickListener {
+            Log.i(mainActivity, "float button was pressed")
             showCreateListDialog()
         }
     }
@@ -48,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showCreateListDialog() {
-
+        Log.i(mainActivity, "showCreateListDialog was called")
         val dialogTitle = getString(R.string.name_of_list)
         val positiveButtonTitle = getString(R.string.create_list)
         // Create the Builder and EditText set type to text
@@ -60,9 +65,11 @@ class MainActivity : AppCompatActivity() {
         builder.setView(listTitleEditText)
 
         builder.setPositiveButton(positiveButtonTitle) { dialog, _ ->
+            Log.i(mainActivity, "Positive Button was pressed")
             dialog.dismiss()
         }
         // show the dialog from calling this function
         builder.create().show()
+        Log.i(mainActivity, "AlertDialog was showed")
     }
 }
