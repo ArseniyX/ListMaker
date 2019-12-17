@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val mainActivity = MainActivity::class.java.simpleName
     }
 
-    lateinit var listRecyclerView: RecyclerView
+    private lateinit var listRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
