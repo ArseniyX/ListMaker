@@ -31,5 +31,4 @@ class ListSelectionRecyclerViewAdapter(private val lists: ArrayList<TaskList>) :
         lists.add(list)
         notifyItemInserted(lists.size - 1)
     }
-
 }
