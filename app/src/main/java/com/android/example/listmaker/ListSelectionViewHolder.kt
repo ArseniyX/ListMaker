@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 class ListSelectionViewHolder(itemView: View) :
     RecyclerView.ViewHolder(itemView) {
 
-    val listPosition = itemView.findViewById<TextView>(R.id.itemNumber)
+    val listPosition: TextView = itemView.findViewById(R.id.itemNumber)
 
-    val listTitle = itemView.findViewById<TextView>(R.id.itemString)
+    val listTitle: TextView = itemView.findViewById(R.id.itemString)
 }
