@@ -15,11 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    companion object {
-        val TAG = MainActivity::class.java.simpleName
-    }
-
-    private lateinit var listRecyclerView: RecyclerView
+    private val listRecyclerView by lazy { findViewById<RecyclerView>(R.id.lists_recyclerview) }
     private val listDataManager = ListDataManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,14 +24,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val lists = listDataManager.readList()
-        listRecyclerView = findViewById(R.id.lists_recyclerview)
+        val tasks = listDataManager.readList()
+
         listRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        listRecyclerView.adapter = ListSelectionRecyclerViewAdapter(lists)
+        listRecyclerView.adapter = ListSelectionRecyclerViewAdapter(tasks)
 
         fab.setOnClickListener {
-            Log.i(TAG, "float button was pressed")
+            Log.i(TAG, "fab was pressed")
             showCreateListDialog()
         }
     }
@@ -85,5 +81,9 @@ class MainActivity : AppCompatActivity() {
         // show the dialog from calling this function
         builder.create().show()
         Log.i(TAG, "AlertDialog was created and showed")
+    }
+
+    companion object {
+        val TAG = MainActivity::class.java.simpleName
     }
 }
