@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        val mainActivity = MainActivity::class.java.simpleName
+        val TAG = MainActivity::class.java.simpleName
     }
 
     private lateinit var listRecyclerView: RecyclerView
@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.i(TAG, "onCreate() called")
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
@@ -34,18 +35,20 @@ class MainActivity : AppCompatActivity() {
         listRecyclerView.adapter = ListSelectionRecyclerViewAdapter(lists)
 
         fab.setOnClickListener {
-            Log.i(mainActivity, "float button was pressed")
+            Log.i(TAG, "float button was pressed")
             showCreateListDialog()
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        Log.i(TAG, "onCreateOptionMenu() called")
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.i(TAG, "onOptionsItemSelected() called")
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -56,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showCreateListDialog() {
-        Log.i(mainActivity, "showCreateListDialog was called")
+        Log.i(TAG, "showCreateListDialog() called")
         val dialogTitle = getString(R.string.name_of_list)
         val positiveButtonTitle = getString(R.string.create_list)
         // Create the Builder and EditText set type to text
@@ -68,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         builder.setView(listTitleEditText)
 
         builder.setPositiveButton(positiveButtonTitle) { dialog, _ ->
-            Log.i(mainActivity, "Positive Button was pressed")
+            Log.i(TAG, "Positive Button was pressed")
 
             val list = TaskList(listTitleEditText.text.toString())
             listDataManager.saveList(list)
@@ -81,6 +84,6 @@ class MainActivity : AppCompatActivity() {
         }
         // show the dialog from calling this function
         builder.create().show()
-        Log.i(mainActivity, "AlertDialog was showed")
+        Log.i(TAG, "AlertDialog was created and showed")
     }
 }
