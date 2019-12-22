@@ -15,7 +15,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val listRecyclerView by lazy { findViewById<RecyclerView>(R.id.lists_recyclerview) }
+    private val listRecyclerView by lazy {
+        findViewById<RecyclerView>(R.id.lists_recyclerview) }
     private val listDataManager = ListDataManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
